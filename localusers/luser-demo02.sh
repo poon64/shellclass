@@ -9,7 +9,7 @@ echo  "Your UID is ${UID}"      # UId is a preset variable in bash
 # Display the username. 
 USER_NAME=$(id -un)
 echo "You username is ${USER_NAME}" 
-# Another way to do the same thing
+# Another older way to do the same thing
 # USER_NAME=`id -un`  # `` is called back tick marks
 # echo "You username is ${USER_NAME}" 
 
