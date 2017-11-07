@@ -13,16 +13,25 @@ then
     exit 1
 fi
 
-# Get the username (login).
-read -p 'Enter the username to create: ' USER_NAME      # -p gives an prompt.
+#If they don't at supply at least one argument, then give them help
+if [[ "${#}" -lt 1 ]]
+then
+    echo "Usage: ${0} USER_NAME [COMMENT]..."
+    echo 'Create an account on the local system with the name of USER_NAME and a comments field of COMMENT.'
+    exit 1
+fi
 
-# Get the real name (Contents for the description field).
-read -p 'Enter the name of the person or application that will use this account: ' COMMENT
+# The first parameter is the usser name 
+USER_NAME="${1}"
 
-# Get the password.
-read -p 'Enter the password to use for the account: ' PASSWORD
+#The rest of the parameters are for the account comments.
+shift           #shift takes out the username, and the rest will be the comment
+COMMENT="${@}"
 
-# Create the account.
+# Generate a password.
+PASSWORD=$(date +%s%N | sha256sum | head -c48)
+
+# Create the user with the password.
 useradd -c "${COMMENT}" -m ${USER_NAME}
 
 # Check to see if the useradd command succeded.
@@ -36,6 +45,7 @@ fi
 # Set the password.
 echo ${PASSWORD} | passwd --stdin ${USER_NAME}
 
+# Check to see if the passwd command succeded.
 if [[ "${?}" -ne 0 ]]
 then
     echo 'The password for the account could not be set.'

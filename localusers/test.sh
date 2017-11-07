@@ -5,7 +5,7 @@
 # Optionally, you can also provide a comment for the account as an argument.
 # A password will be automatically generated for the account.
 # The username, password and host for the account will be displayed.
-#
+
 # Make sure the script is being executed with superuser privileges.
 if [[ "${UID}" -ne 0 ]]
 then
