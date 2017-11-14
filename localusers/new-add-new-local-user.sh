@@ -13,7 +13,7 @@ then
     exit 1
 fi
 
-#If they don't at supply at least one argument, then give them help
+#If they don't supply at least one argument, then give them help
 if [[ "${#}" -lt 1 ]]
 then
     echo "Usage: ${0} USER_NAME [COMMENT]..."
@@ -21,7 +21,7 @@ then
     exit 1
 fi
 
-# The first parameter is the usser name 
+# The first parameter is the user name 
 USER_NAME="${1}"
 
 #The rest of the parameters are for the account comments.
